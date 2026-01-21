@@ -65,7 +65,13 @@ public abstract class MiniGameStartBasePlugIn<TConfiguration, TGameState> : Peri
     /// <inheritdoc />
     protected override ValueTask OnPreparedAsync(TGameState state)
     {
-        // We keep it simple and don't send a message here.
+        // Envia uma mensagem global opcionalmente antes do início do evento,
+        // respeitando o PreStartMessageDelay configurado.
+        if (this.Configuration is { Message: { } message })
+        {
+            _ = state.Context.SendGlobalNotificationAsync(message);
+        }
+
         return ValueTask.CompletedTask;
     }
 

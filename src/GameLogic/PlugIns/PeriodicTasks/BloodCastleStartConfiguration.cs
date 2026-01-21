@@ -15,10 +15,15 @@ public class BloodCastleStartConfiguration : MiniGameStartConfiguration
     public static BloodCastleStartConfiguration Default =>
         new()
         {
-            PreStartMessageDelay = TimeSpan.Zero,
+            // Envia aviso 1 minuto antes de abrir a entrada.
+            PreStartMessageDelay = TimeSpan.FromMinutes(1),
+            // Mensagem global exibida quando faltar 1 minuto para abrir.
+            Message = "Falta 1 minuto para abrir o BLOOD CASTLE.",
             EntranceOpenedMessage = "Blood Castle entrance is open and closes in {0} minute(s).",
             EntranceClosedMessage = "Blood Castle entrance closed.",
             TaskDuration = TimeSpan.FromMinutes(20),
-            Timetable = GenerateTimeSequence(TimeSpan.FromMinutes(120)).ToList(),
+            // Intervalo padrão alterado de 120 minutos para 5 minutos,
+            // permitindo que o evento seja iniciado com muito mais frequência.
+            Timetable = GenerateTimeSequence(TimeSpan.FromMinutes(5)).ToList(),
         };
 }

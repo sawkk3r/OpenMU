@@ -15,10 +15,15 @@ public class DevilSquareStartConfiguration : MiniGameStartConfiguration
     public static DevilSquareStartConfiguration Default =>
         new()
         {
-            PreStartMessageDelay = TimeSpan.Zero,
+            // Envia aviso 1 minuto antes de abrir a entrada.
+            PreStartMessageDelay = TimeSpan.FromMinutes(1),
+            // Mensagem global exibida quando faltar 1 minuto para abrir.
+            Message = "Falta 1 minuto para abrir o DEVIL SQUARE.",
             EntranceOpenedMessage = "Devil Square entrance is open and closes in {0} minute(s).",
             EntranceClosedMessage = "Devil Square entrance closed.",
             TaskDuration = TimeSpan.FromMinutes(25),
-            Timetable = PeriodicTaskConfiguration.GenerateTimeSequence(TimeSpan.FromMinutes(240)).ToList(),
+            // Intervalo padrão alterado de 240 minutos para 5 minutos,
+            // permitindo que o evento seja iniciado com muito mais frequência.
+            Timetable = PeriodicTaskConfiguration.GenerateTimeSequence(TimeSpan.FromMinutes(5)).ToList(),
         };
 }
