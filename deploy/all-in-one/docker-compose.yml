@@ -25,7 +25,10 @@ services:
       - "44406:44406"
       - "55980:55980"
     environment:
-      DB_HOST: database
+      DB_HOST: ${DB_HOST:-database}
+      DB_ADMIN_USER: ${DB_ADMIN_USER:-postgres}
+      DB_ADMIN_PW: ${DB_ADMIN_PW:-admin}
+      RESOLVE_IP: ${RESOLVE_IP:-public}
       ASPNETCORE_URLS: http://+:8080
       RESOLVE_IP: loopback
     working_dir: /app/
@@ -38,9 +41,9 @@ services:
     image: postgres
     container_name: database
     environment:
-      POSTGRES_PASSWORD: admin
+      POSTGRES_PASSWORD: ${DB_ADMIN_PW:-admin}
       POSTGRES_DB: openmu
-      POSTGRES_USER: postgres
+      POSTGRES_USER: ${DB_ADMIN_USER:-postgres}
     ports:
       - "5432"
     volumes:

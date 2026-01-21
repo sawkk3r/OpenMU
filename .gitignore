@@ -316,3 +316,8 @@ src/AdminPanel/wwwroot/content/js/app.js.map
 
 # Mac OS filesystem files
 .DS_Store
+
+# OpenMU - Arquivos sensíveis (NUNCA commitar)
+deploy/**/.env
+deploy/**/.htpasswd
+deploy/**/certbot/
