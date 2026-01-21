@@ -25,12 +25,11 @@ services:
       - "44406:44406"
       - "55980:55980"
     environment:
-      DB_HOST: ${DB_HOST:-database}
-      DB_ADMIN_USER: ${DB_ADMIN_USER:-postgres}
-      DB_ADMIN_PW: ${DB_ADMIN_PW:-admin}
-      RESOLVE_IP: ${RESOLVE_IP:-public}
-      ASPNETCORE_URLS: http://+:8080
-      RESOLVE_IP: loopback
+      - DB_HOST=${DB_HOST:-database}
+      - DB_ADMIN_USER=${DB_ADMIN_USER:-postgres}
+      - DB_ADMIN_PW=${DB_ADMIN_PW:-admin}
+      - ASPNETCORE_URLS=http://+:8080
+      - RESOLVE_IP=loopback
     working_dir: /app/
     volumes:
       - ./.htpasswd:/etc/nginx/.htpasswd
